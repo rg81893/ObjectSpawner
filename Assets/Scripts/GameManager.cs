@@ -6,7 +6,9 @@ using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int distanceZ;
     [SerializeField] GameObject cube;
+    [SerializeField] int maxObjects;
     bool created;
     // Start is called before the first frame update
     void Start()
@@ -17,10 +19,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))// && !created)
+        if (Input.GetMouseButtonDown(0) && maxObjects < 10)
         {
             Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 10;
+            mousePosition.z = distanceZ;
             created = SpawnCube(Camera.main.ScreenToWorldPoint(mousePosition));
         }
     }
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     bool SpawnCube(Vector2 mousePosition)
     {
         Instantiate(cube, mousePosition, Quaternion.identity);
+        maxObjects++;
         return created = true;
     }
 }

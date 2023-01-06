@@ -314,4 +314,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b83b8c99abd94948b3b26ba8677f766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceZ: 10
   cube: {fileID: 4294812162572070751, guid: be55315c760e3d645ad201f956f9ce37, type: 3}
