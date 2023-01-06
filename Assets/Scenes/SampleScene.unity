@@ -315,4 +315,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceZ: 10
-  cube: {fileID: 4294812162572070751, guid: be55315c760e3d645ad201f956f9ce37, type: 3}
+  obj: {fileID: 4294812162572070751, guid: be55315c760e3d645ad201f956f9ce37, type: 3}
+  maxObjects: 10
