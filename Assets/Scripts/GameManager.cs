@@ -20,23 +20,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && gameObjects.Count < maxObjects)
+        if (Input.GetMouseButtonDown(0) && gameObjects.Count <= maxObjects)
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = distanceZ;
-            created = SpawnCube(Camera.main.ScreenToWorldPoint(mousePosition));
+            created = SpawnObject(Camera.main.ScreenToWorldPoint(mousePosition));
         }
     }
 
-    bool SpawnCube(Vector2 mousePosition)
+    bool SpawnObject(Vector2 mousePosition)
     {
-        GameObject objectNew = Instantiate(obj, mousePosition, Quaternion.identity) as GameObject;
-        
-        gameObjects.Add(objectNew);
-        if (gameObjects.Count == maxObjects)
+        if (gameObjects.Count != maxObjects)
         {
-            GameObject objToDestroy = gameObjects[0];
-            Destroy(objToDestroy);
+            GameObject objectNew = Instantiate(obj, mousePosition, Quaternion.identity) as GameObject;
+            gameObjects.Add(objectNew);
+        }
+        else if (gameObjects.Count == maxObjects)
+        {
+            //-- Version où l'on détruit le 1er objet créé --// 
+            //GameObject objToDestroy = gameObjects[0];
+            //Destroy(objToDestroy);
+            //gameObjects.RemoveAt(0);
+
+            //-- Version où l'on copie le 1er objet en changeant ses coordonnées --//
+            GameObject objToMove = gameObjects[0];
+            objToMove.transform.position = mousePosition;
+            gameObjects.Add(objToMove);
             gameObjects.RemoveAt(0);
         }
        
